@@ -1,0 +1,6 @@
+fastapi==0.78.0
+uvicorn==0.17.6
+pymongo
+passlib[bcrypt]
+python-jose==3.3.0
+requests
