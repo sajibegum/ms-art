@@ -331,26 +331,72 @@
               "threats": [
                 {
                   "id": "495c10dd-5b98-4b17-ac3d-c319f455685d",
-                  "title": "Attacker could overload the client by sending too many requests, causing the app to crash or become unresponsive.",
+                  "title": "Client-Side Code Tampering via XSS",
                   "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Spoofing",
-                  "description": "Attacker could overload the client by sending too many requests, causing the app to crash or become unresponsive.",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "description": "An attacker may inject scripts (e.g., through user input or 3rd-party JS) that tamper with UI behavior or steal user tokens.",
+                  "mitigation": "Use Angular’s built-in DOM sanitization\n\nApply strict Content Security Policy (CSP)\n\nEscape and validate user input",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 8,
                   "score": ""
+                },
+                {
+                  "id": "ccd6280a-9d49-45f8-9a63-985789c70d8a",
+                  "title": "Sensitive Data Exposure in Browser",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Web client may store sensitive data in localStorage, which is vulnerable to XSS, or expose it in console logs.",
+                  "mitigation": "Store JWTs in HttpOnly cookies instead of localStorage\n\nAvoid logging sensitive data\n\nUse session timeouts and secure storage",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                },
+                {
+                  "id": "36fafe5a-b21e-4cca-a332-ecf2c2203616",
+                  "title": "UI Freeze from Malicious Input",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "An attacker could overload the client with large or malformed data, freezing the UI or browser tab.",
+                  "mitigation": "Validate responses and input data lengths\n\nLimit what the client renders (e.g., max characters)\n\nHandle errors gracefully in the UI",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                },
+                {
+                  "id": "5625aac8-a8ba-426c-87a0-5c3deb9b24a7",
+                  "title": "Hidden Admin Functions Enabled",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Elevation of privilege",
+                  "description": "Malicious users may discover hidden UI elements (e.g., using DevTools) and access restricted actions.",
+                  "mitigation": "Do not enforce authorization in the client\n\nHide sensitive routes in production builds\n\nValidate all permissions on the server",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
-                "spoofing": 3,
+                "spoofing": 4,
                 "tampering": 0,
                 "repudiation": 0,
-                "informationDisclosure": 0,
-                "denialOfService": 0,
-                "elevationOfPrivilege": 0
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -1072,6 +1118,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 18
+    "threatTop": 21
   }
 }
