@@ -38,6 +38,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -121,7 +122,6 @@
               ]
             },
             "id": "e35ce97d-4479-42e9-91d4-288f14f42d5b",
-            "zIndex": 1,
             "data": {
               "type": "tm.Process",
               "name": "Web Client (Angular)",
@@ -158,6 +158,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -241,7 +242,6 @@
               ]
             },
             "id": "da4de2d5-4415-44aa-a6ed-0abe8980c0ae",
-            "zIndex": 2,
             "data": {
               "type": "tm.Process",
               "name": "Web Server/API (Node.js)",
@@ -254,7 +254,29 @@
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "495c10dd-5b98-4b17-ac3d-c319f455685d",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
             }
           },
           {
@@ -278,6 +300,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -361,7 +384,6 @@
               ]
             },
             "id": "722204b5-264f-4bf4-8ad6-8d9df651184e",
-            "zIndex": 3,
             "data": {
               "type": "tm.Actor",
               "name": "User",
@@ -398,6 +420,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 4,
             "ports": {
               "groups": {
                 "top": {
@@ -481,7 +504,6 @@
               ]
             },
             "id": "2d0d89b5-a2b6-412f-bad0-a82ee27945a6",
-            "zIndex": 4,
             "data": {
               "type": "tm.Store",
               "name": "User Database (SQLite/MongoDB)",
@@ -563,7 +585,7 @@
                 "y": 230
               },
               {
-                "x": 770,
+                "x": 740,
                 "y": 230
               },
               {
@@ -763,16 +785,6 @@
               "cell": "e35ce97d-4479-42e9-91d4-288f14f42d5b",
               "port": "5468abcf-ef46-49d1-b46d-27d1dd440b72"
             },
-            "vertices": [
-              {
-                "x": 1020,
-                "y": 320
-              },
-              {
-                "x": 1010,
-                "y": 310
-              }
-            ],
             "tools": {
               "items": [
                 "boundary",
@@ -782,7 +794,17 @@
                 "target-arrowhead"
               ],
               "name": null
-            }
+            },
+            "vertices": [
+              {
+                "x": 1020,
+                "y": 320
+              },
+              {
+                "x": 1010,
+                "y": 310
+              }
+            ]
           },
           {
             "shape": "trust-boundary-curve",
@@ -882,8 +904,7 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "stroke": "#333333",
                 "targetMarker": {
                   "name": "block"
                 },
@@ -904,26 +925,17 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": [
-                {
-                  "id": "c7ba3dcd-3472-4311-86e0-63cc6ae22177",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Tampering",
-                  "description": "Provide a description for this threat",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
-                  "modelType": "STRIDE",
-                  "new": true,
-                  "number": 2,
-                  "score": ""
-                }
-              ]
+              "threats": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             },
             "labels": [
               "Login credentials"
@@ -944,6 +956,10 @@
               },
               {
                 "x": 270,
+                "y": 150
+              },
+              {
+                "x": 290,
                 "y": 150
               },
               {
@@ -1015,6 +1031,10 @@
               {
                 "x": 700,
                 "y": 175
+              },
+              {
+                "x": 740,
+                "y": 150
               }
             ]
           }
@@ -1023,6 +1043,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 7
+    "threatTop": 8
   }
 }
