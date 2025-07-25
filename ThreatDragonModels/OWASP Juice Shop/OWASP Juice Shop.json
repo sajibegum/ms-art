@@ -28,11 +28,11 @@
             },
             "attrs": {
               "text": {
-                "text": "Web Client (Angular)"
+                "text": "Web Server/API (Node.js)"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -124,12 +124,12 @@
             "id": "e35ce97d-4479-42e9-91d4-288f14f42d5b",
             "data": {
               "type": "tm.Process",
-              "name": "Web Client (Angular)",
+              "name": "Web Server/API (Node.js)",
               "description": "Web Client (Angular)",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
@@ -137,23 +137,49 @@
               "threats": [
                 {
                   "id": "95aed998-6552-49a6-81fe-dd1cca540398",
-                  "title": "New STRIDE threat",
+                  "title": "Spoofed API Request",
                   "status": "Mitigated",
                   "severity": "High",
-                  "type": "Denial of service",
-                  "description": "Provide a description for this threat",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "type": "Spoofing",
+                  "description": "An attacker could forge API requests or JWT tokens to impersonate another user.",
+                  "mitigation": "Use signed and encrypted JWTs\n\nEnforce strong authentication and access control\n\nValidate tokens on each request",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 10,
                   "score": ""
+                },
+                {
+                  "id": "23f85fd2-67af-4c13-a372-0e916e7e3973",
+                  "title": "Malicious Data Tampering",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Malicious users might tamper with HTTP parameters (e.g., modify price fields in a request).",
+                  "mitigation": "Use server-side validation and sanitization\n\nApply schema validation (e.g., using Joi, Zod, or express-validator)\n\nImplement logging for suspicious inputs",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                },
+                {
+                  "id": "a147922b-fbed-40ed-8063-a4c87dcd60f5",
+                  "title": "Sensitive Information Leak via API",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "The API could return stack traces, tokens, or sensitive fields (e.g., passwords) in responses.",
+                  "mitigation": "Hide internal error messages from users\n\nRemove sensitive data from logs and responses\n\nEnforce role-based data exposure",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
-                "spoofing": 0,
-                "tampering": 0,
+                "spoofing": 1,
+                "tampering": 2,
                 "repudiation": 1,
-                "informationDisclosure": 0,
+                "informationDisclosure": 1,
                 "denialOfService": 1,
                 "elevationOfPrivilege": 0
               }
@@ -170,7 +196,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Web Server/API (Node.js)"
+                "text": "Web Client (Angular)"
               },
               "body": {
                 "stroke": "#333333",
@@ -266,7 +292,7 @@
             "id": "da4de2d5-4415-44aa-a6ed-0abe8980c0ae",
             "data": {
               "type": "tm.Process",
-              "name": "Web Server/API (Node.js)",
+              "name": "Web Client (Angular)",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -279,11 +305,11 @@
               "threats": [
                 {
                   "id": "495c10dd-5b98-4b17-ac3d-c319f455685d",
-                  "title": "New STRIDE threat",
+                  "title": "Attacker could overload the client by sending too many requests, causing the app to crash or become unresponsive.",
                   "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Spoofing",
-                  "description": "Provide a description for this threat",
+                  "description": "Attacker could overload the client by sending too many requests, causing the app to crash or become unresponsive.",
                   "mitigation": "Provide remediation for this threat or a reason if status is N/A",
                   "modelType": "STRIDE",
                   "new": false,
@@ -292,7 +318,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 2,
+                "spoofing": 3,
                 "tampering": 0,
                 "repudiation": 0,
                 "informationDisclosure": 0,
@@ -418,11 +444,11 @@
               "threats": [
                 {
                   "id": "d3fa8906-240e-401f-b190-430c2fb15fc5",
-                  "title": "New STRIDE threat",
+                  "title": "A malicious user may try to impersonate a legitimate user using stolen credentials.",
                   "status": "Mitigated",
                   "severity": "Low",
                   "type": "Spoofing",
-                  "description": "Provide a description for this threat",
+                  "description": "A malicious user may try to impersonate a legitimate user using stolen credentials.",
                   "mitigation": "Provide remediation for this threat or a reason if status is N/A",
                   "modelType": "STRIDE",
                   "new": false,
@@ -431,7 +457,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 2,
                 "repudiation": 1
               }
             }
@@ -561,47 +587,21 @@
               "storesInventory": false,
               "threats": [
                 {
-                  "id": "ff6e25ca-9e53-4ba2-bb91-dd898327935b",
-                  "title": "Scraping",
+                  "id": "d6696d4b-ffef-4584-8acd-3a5698ca2ce8",
+                  "title": "Unauthorized modification of user data",
                   "status": "Open",
                   "severity": "TBD",
-                  "type": "Denial of service",
-                  "description": "See OWASP Automated Threat #11:\nCollecting accessible data and/or processed output from the application",
-                  "mitigation": "Detect fake or compromised accounts, ensure information is accessible only with authentication and authorisation",
+                  "type": "Tampering",
+                  "description": "Attackers may gain unauthorized access to the DB and modify user profiles, product listings, or order histories.",
+                  "mitigation": "Enforce role-based access control, validate all input, use ORM or prepared statements, and limit DB user privileges.",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 11,
-                  "score": ""
-                },
-                {
-                  "id": "065e8105-c4a1-45ef-84d8-db4a5a390231",
-                  "title": "Skewing",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Elevation of privilege",
-                  "description": "See OWASP Automated Threat #16:\nAutomated repeated clicking or requesting or submitting content, affecting application based metrics such as counts, and measures of frequency and/or rate",
-                  "mitigation": "Defences include control of interaction frequency or proper enforcement of a single unique action",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 12,
-                  "score": ""
-                },
-                {
-                  "id": "a7e9cb1f-28ff-4b63-affd-59af236c423b",
-                  "title": "Spamming",
-                  "status": "Open",
-                  "severity": "TBD",
-                  "type": "Elevation of privilege",
-                  "description": "See OWASP Automated Threat #17:\nStoring malicious such as malware, Iframe distribution, photographs & videos, advertisements, referrer spam and tracking/surveillance code",
-                  "mitigation": "Defences include detecting embedded malicious code, controling interaction frequency and enforcement of a single unique action",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 13,
+                  "number": 14,
                   "score": ""
                 }
               ],
               "threatFrequency": {
-                "tampering": 0,
+                "tampering": 1,
                 "repudiation": 0,
                 "informationDisclosure": 0,
                 "denialOfService": 1
@@ -1046,6 +1046,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 13
+    "threatTop": 16
   }
 }
